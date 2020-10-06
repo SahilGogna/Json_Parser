@@ -20,8 +20,6 @@ public class JsonParser {
         while (sc.hasNext()) {
             inline += sc.nextLine();
         }
-        System.out.println("\nJSON data in string format");
-        System.out.println(inline);
         sc.close();
         return inline;
     }

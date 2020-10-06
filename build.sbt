@@ -6,6 +6,8 @@ scalaVersion := "2.12.10"
 
 val sparkVersion = "3.0.0"
 
+val hadoopVersion = "2.7.3"
+
 libraryDependencies +=  "org.scalaj" %% "scalaj-http" % "2.4.2"
 
 libraryDependencies ++= Seq(
@@ -13,6 +15,11 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion,
   "org.apache.spark" %% "spark-sql" % sparkVersion
 )
+
+libraryDependencies ++= Seq(
+  "org.apache.hadoop" % "hadoop-common",
+  "org.apache.hadoop" % "hadoop-hdfs",
+).map( _ % hadoopVersion)
 
 // https://mvnrepository.com/artifact/com.google.code.gson/gson
 libraryDependencies += "com.google.code.gson" % "gson" % "1.7.1"
