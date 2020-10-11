@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AppStarter {
     public static void main(String[] args) throws IOException {

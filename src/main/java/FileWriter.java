@@ -4,12 +4,13 @@ import org.apache.hadoop.fs.FileSystem;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.hadoop.fs.Path;
 
 public class FileWriter {
 
-    static String localFilePath = "/Users/sahilgogna/Documents/Big Data College/sprint2OP.csv";
+    static String localFilePath = "/Users/sahilgogna/Documents/Big Data College/sprint2.csv";
 
     private static void writeToHdfs() throws IOException {
         String outputFolderPath = "/user/fall2019/sahilgogna/sprint2";
@@ -27,7 +28,7 @@ public class FileWriter {
     public static void writeToLocalFs(Map<String, EnrichedStationInformation> map) throws IOException {
         File file = new File(localFilePath);
         java.io.FileWriter fileWriter = new java.io.FileWriter(file);
-        CSVWriter writer = new CSVWriter(fileWriter);
+        CSVWriter writer = new CSVWriter(fileWriter, '|', CSVWriter.NO_QUOTE_CHARACTER);
 
         String[] csvSchema = {
                 "station_id",
@@ -66,6 +67,7 @@ public class FileWriter {
                     String.valueOf(entry.getStationInformationEntity().getLat()),
                     String.valueOf(entry.getStationInformationEntity().getLon()),
                     entry.getStationInformationEntity().getRental_methods().toString(),
+//                    entry.getStationInformationEntity().getRental_methods().stream().collect(Collectors.joining("-", "", "")),
                     String.valueOf(entry.getStationInformationEntity().getCapacity()),
                     String.valueOf(entry.getStationInformationEntity().isElectric_bike_surcharge_waiver()),
                     String.valueOf(entry.getStationInformationEntity().isIs_charging()),
