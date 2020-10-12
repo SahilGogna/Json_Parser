@@ -2,12 +2,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AppStarter {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
         String stationInformation = JsonParser.parseJsonURL("https://api-core.bixi.com/gbfs/en/station_information.json");
         String systemInformation = JsonParser.parseJsonURL("https://api-core.bixi.com/gbfs/en/system_information.json");
         GsonBuilder builder = new GsonBuilder();
@@ -26,6 +27,7 @@ public class AppStarter {
                             new EnrichedStationInformation(object, systemInformationEntity));
         }
         FileWriter.writeToLocalFs(enrichedStationInformationMap);
+        HiveJdbcClient.constructHiveTable();
     }
 
     private static SystemInformationEntity getSystemInf(SystemInformationJson systemInformationJson) {

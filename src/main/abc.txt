@@ -1,0 +1,7 @@
+CREATE EXTERNAL TABLE fall2019_sahilgogna.external_station_information(station_id INT,external_id String,name String,short_name String,lat Double,lon Double,rental_methods Array<String>,capacity INT,electric_bike_surcharge_waiver Boolean,is_charging Boolean,eightd_has_key_dispenser Boolean,has_kiosk Boolean,system_id String,language String,system_name String,system_short_name String,operator String,url String,start_date String,phone_number String,email String,license_url String,timezone String)
+            ROW FORMAT DELIMITED
+            FIELDS TERMINATED BY ','
+            COLLECTION ITEMS TERMINATED BY '||'
+            STORED AS TEXTFILE
+            LOCATION '/user/fall2019/sahilgogna/sprint2'
+            tblproperties("skip.header.line.count"="1","serialization.null.format"="");

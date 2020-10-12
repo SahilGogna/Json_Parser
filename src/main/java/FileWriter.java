@@ -28,7 +28,7 @@ public class FileWriter {
     public static void writeToLocalFs(Map<String, EnrichedStationInformation> map) throws IOException {
         File file = new File(localFilePath);
         java.io.FileWriter fileWriter = new java.io.FileWriter(file);
-        CSVWriter writer = new CSVWriter(fileWriter, '|', CSVWriter.NO_QUOTE_CHARACTER);
+        CSVWriter writer = new CSVWriter(fileWriter, CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER);
 
         String[] csvSchema = {
                 "station_id",
@@ -66,8 +66,8 @@ public class FileWriter {
                     entry.getStationInformationEntity().getShort_name(),
                     String.valueOf(entry.getStationInformationEntity().getLat()),
                     String.valueOf(entry.getStationInformationEntity().getLon()),
-                    entry.getStationInformationEntity().getRental_methods().toString(),
-//                    entry.getStationInformationEntity().getRental_methods().stream().collect(Collectors.joining("-", "", "")),
+//                    entry.getStationInformationEntity().getRental_methods().toString(),
+                    entry.getStationInformationEntity().getRental_methods().stream().collect(Collectors.joining("||", "", "")),
                     String.valueOf(entry.getStationInformationEntity().getCapacity()),
                     String.valueOf(entry.getStationInformationEntity().isElectric_bike_surcharge_waiver()),
                     String.valueOf(entry.getStationInformationEntity().isIs_charging()),
